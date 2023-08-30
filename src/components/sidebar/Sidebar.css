@@ -1,0 +1,92 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  height: 100%;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  align-items: center;
+  box-shadow: 5px 0 5px -2px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+.sidebar:hover {
+  width: 300px;
+  transition: all 0.5s ease;
+}
+.sidebar__logo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 170px;
+  align-items: center;
+  padding: 20px 0;
+}
+.sidebar__logo img {
+  width: 100px; /* Establece el ancho deseado */
+  /* height: auto; (Opcional, si quieres mantener la proporción original) */
+}
+.sidebar__logo h1 {
+  font-size: 25px;
+  font-weight: 600;
+  color: #000;
+}
+.sidebar__menu {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+.sidebar__menu ul {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  justify-items: start;
+}
+.sidebar__menu ul span {
+  display: flex;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  border-bottom: 1px solid #ccc;
+}
+.sidebar__menu ul li {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center; /* Alineación vertical de icono y texto */
+}
+
+.sidebar__menu ul li a {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  padding: 10px; /* Agrega un espaciado para separar los elementos */
+}
+
+.sidebar__menu ul li a:hover {
+  background-color: #ccc;
+  width: 95%;
+  border-radius: 10px;
+}
+
+.sidebar__menu ul li a .svg-inline--fa {
+  font-size: 20px;
+  margin-right: 10px; /* Ajusta el espacio entre el icono y el texto */
+}
+
+.sidebar__menu ul li a span {
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  justify-content: start;
+}

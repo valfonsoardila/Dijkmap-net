@@ -1,0 +1,8 @@
+.content{
+    display: flex;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+}
