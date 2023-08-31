@@ -8,10 +8,15 @@
   align-items: center;
   box-shadow: 5px 0 5px -2px rgba(0, 0, 0, 0.3);
   z-index: 100;
+  transition: all 0.7s ease;
 }
 .sidebar:hover {
   width: 300px;
-  transition: all 0.5s ease;
+  transition: all 0.7s ease;
+}
+.sidebar:hover span {
+  display: flex;
+  transition: all 0.7s ease;
 }
 .sidebar__logo {
   display: flex;
@@ -57,36 +62,55 @@
   justify-content: center;
   border-bottom: 1px solid #ccc;
 }
-.sidebar__menu ul li {
+.sidebar__menu ul li span {
+  border: none;
+  display: none;
+}
+.collapsible-header {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.collapsible-header:hover {
+  background-color: #ccc;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.collapsible-header > svg{
+  font-size: 20px;
+  justify-content: center;
+  align-self: center;
+}
+.collapsible-content {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  align-items: center; /* Alineación vertical de icono y texto */
+  background-color: #f2f2f2;
+  height: 100%;
+  padding: 0 5px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
-
-.sidebar__menu ul li a {
+.collapsible-options {
   display: flex;
-  width: 100%;
+  flex-direction: row;
   align-items: center;
-  text-decoration: none;
-  color: #000;
-  padding: 10px; /* Agrega un espaciado para separar los elementos */
+  height: fit-content;
+}
+.collapsible-options p{
+  display: flex;
+  font-size: 16px;
+  margin-right: 1%;
+}
+.collapsible-options select{
+  display: flex;
+  height: 30%;
+  width: -webkit-fill-available;
 }
 
-.sidebar__menu ul li a:hover {
-  background-color: #ccc;
-  width: 95%;
-  border-radius: 10px;
-}
 
-.sidebar__menu ul li a .svg-inline--fa {
-  font-size: 20px;
-  margin-right: 10px; /* Ajusta el espacio entre el icono y el texto */
-}
 
-.sidebar__menu ul li a span {
-  font-size: 15px;
-  font-weight: 600;
-  border: none;
-  justify-content: start;
-}
+
