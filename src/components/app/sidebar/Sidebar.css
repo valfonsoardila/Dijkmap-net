@@ -8,15 +8,15 @@
   align-items: center;
   box-shadow: 5px 0 5px -2px rgba(0, 0, 0, 0.3);
   z-index: 100;
-  transition: all 0.7s ease;
+  transition: all 0.4s ease;
 }
 .sidebar:hover {
   width: 300px;
-  transition: all 0.7s ease;
+  transition: all 0.4s ease;
 }
 .sidebar:hover span {
   display: flex;
-  transition: all 0.7s ease;
+  transition: all 0.4s ease;
 }
 .sidebar__logo {
   display: flex;
@@ -110,6 +110,10 @@
   height: 30%;
   width: -webkit-fill-available;
 }
+.collapsible-options select option{
+  color: #000;
+}
+
 
 
 

@@ -7,14 +7,21 @@ import {
   faCog,
   faDashboard,
 } from "@fortawesome/free-solid-svg-icons";
-import Cities from "../../../assets/data/Citys.json";
+import Cities from "../../../assets/data/Cities.json";
+import Transport from "../../../assets/data/Transports.json";
 
 function Sidebar() {
   const [expandedData, setExpandedData] = useState(false);
   const [expandedResults, setExpandedResults] = useState(false);
   const [expandedConfig, setExpandedConfig] = useState(false);
   const options = ["Opción 1", "Opción 2", "Opción 3"];
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedOptionOrigin, setSelectedOptionOrigin] = useState(options[0]);
+  const [selectedOptionDestination, setSelectedOptionDestination] = useState(
+    options[0]
+  );
+  const [selectedOptionTransport, setSelectedOptionTransport] = useState(
+    options[0]
+  );
   const [checkData, setcheckData] = useState(false);
   const [checkResults, setcheckResults] = useState(false);
 
@@ -24,10 +31,15 @@ function Sidebar() {
   const handlecheckResults = () => {
     setcheckResults(!checkResults);
   };
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
+  const handleChangeOrigen = (event) => {
+    setSelectedOptionOrigin(event.target.value);
   };
-
+  const handleChangeDestination = (event) => {
+    setSelectedOptionDestination(event.target.value);
+  };
+  const handleChangeTransport = (event) => {
+    setSelectedOptionTransport(event.target.value);
+  };
   const toggleExpandedData = () => {
     setExpandedData(!expandedData);
   };
@@ -57,12 +69,12 @@ function Sidebar() {
                   <div className="collapsible-options">
                     <span>Origen: </span>
                     <select
-                      value={selectedOption}
-                      onChange={handleOptionChange}
+                      value={selectedOptionOrigin}
+                      onChange={handleChangeOrigen}
                     >
-                      {Object.keys(Cities).map(city => (
-                        <option key={city} value={city.name}>
-                          {city.name}
+                      {Object.keys(Cities).map((city) => (
+                        <option key={city} value={Cities[city]}>
+                          {Cities[city]}
                         </option>
                       ))}
                     </select>
@@ -70,12 +82,12 @@ function Sidebar() {
                   <div className="collapsible-options">
                     <span>Destino: </span>
                     <select
-                      value={selectedOption}
-                      onChange={handleOptionChange}
+                      value={selectedOptionDestination}
+                      onChange={handleChangeDestination}
                     >
-                      {options.map((option, index) => (
-                        <option key={index} value={option}>
-                          {option}
+                      {Object.keys(Cities).map((city) => (
+                        <option key={city} value={Cities[city]}>
+                          {Cities[city]}
                         </option>
                       ))}
                     </select>
@@ -83,12 +95,12 @@ function Sidebar() {
                   <div className="collapsible-options">
                     <span>Transp: </span>
                     <select
-                      value={selectedOption}
-                      onChange={handleOptionChange}
+                      value={selectedOptionTransport}
+                      onChange={handleChangeTransport}
                     >
-                      {options.map((option, index) => (
-                        <option key={index} value={option}>
-                          {option}
+                      {Object.keys(Transport).map((key) => (
+                        <option key={key} value={Transport[key].Tipo}>
+                          {Transport[key].Tipo}
                         </option>
                       ))}
                     </select>
