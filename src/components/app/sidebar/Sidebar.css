@@ -41,7 +41,7 @@
   width: 100%;
   height: 100%;
   align-items: center;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .sidebar__menu ul {
   display: flex;
