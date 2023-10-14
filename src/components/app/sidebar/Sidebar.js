@@ -9,12 +9,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Cities from "../../../assets/data/Cities.json";
 import Transport from "../../../assets/data/Transports.json";
+import Position from "../../../assets/positions/Positions.json";
 
-function Sidebar() {
+function Sidebar({
+  onExpandedData,
+  onCityOriginSelected,
+  onCityDestinitySelected,
+  onTransport,
+}) {
   const [expandedData, setExpandedData] = useState(false);
   const [expandedResults, setExpandedResults] = useState(false);
   const [expandedConfig, setExpandedConfig] = useState(false);
-  const options = ["Opción 1", "Opción 2", "Opción 3"];
+  const options = ["Ninguno", "Opción 2", "Opción 3"];
   const [selectedOptionOrigin, setSelectedOptionOrigin] = useState(options[0]);
   const [selectedOptionDestination, setSelectedOptionDestination] = useState(
     options[0]
@@ -27,18 +33,85 @@ function Sidebar() {
 
   const handlecheckData = () => {
     setcheckData(!checkData);
+    onExpandedData(checkData);
   };
   const handlecheckResults = () => {
     setcheckResults(!checkResults);
   };
   const handleChangeOrigen = (event) => {
     setSelectedOptionOrigin(event.target.value);
+    console.log(event.target.value);
+    findLocationOrigin(event.target.value);
+  };
+  const findLocationOrigin = (city) => {
+    //necesito recorrer el json de posiciones y encontrar la posicion de la ciudad
+    const cities = Object.keys(Position);
+    for (let i = 0; i < cities.length; i++) {
+      if (cities[i] === city) {
+        const latitude = Position[cities[i]].lat;
+        const longitude = Position[cities[i]].lon;
+        const location = { lat: latitude, lon: longitude };
+        onCityOriginSelected(location);
+        break;
+      }
+    }
   };
   const handleChangeDestination = (event) => {
     setSelectedOptionDestination(event.target.value);
+    console.log(event.target.value);
+    findLocationDestinity(event.target.value);
+  };
+  const findLocationDestinity = (city) => {
+    //necesito recorrer el json de posiciones y encontrar la posicion de la ciudad
+    const cities = Object.keys(Position);
+    for (let i = 0; i < cities.length; i++) {
+      if (cities[i] === city) {
+        const latitude = Position[cities[i]].lat;
+        const longitude = Position[cities[i]].lon;
+        const location = { lat: latitude, lon: longitude };
+        onCityDestinitySelected(location);
+        break;
+      }
+    }
   };
   const handleChangeTransport = (event) => {
     setSelectedOptionTransport(event.target.value);
+    findLocationTransport(event.target.value);
+  };
+  const findLocationTransport = (vehicle) => {
+    //necesito recorrer el json de posiciones y encontrar la posicion de la ciudad
+    const transports = Transport.map((transport) => transport.Tipo);
+    for (let i = 0; i < transports.length; i++) {
+      if (transports[i] === vehicle) {
+        var transport = "";
+        if (vehicle === "Avion") {
+          transport = "airplane";
+        } else {
+          if (vehicle === "Bus") {
+            transport = "bus";
+          } else {
+            if (vehicle === "Carro") {
+              transport = "car";
+            } else {
+              if (vehicle === "Moto") {
+                transport = "bike";
+              } else {
+                if (vehicle === "Bicicleta") {
+                  transport = "bicycle";
+                } else {
+                  if (vehicle === "Caminando") {
+                    transport = "pedestrian";
+                  }
+                }
+              }
+            }
+          }
+        }
+        console.log(transport);
+        onTransport(transport);
+        break;
+      }
+    }
   };
   const toggleExpandedData = () => {
     setExpandedData(!expandedData);
