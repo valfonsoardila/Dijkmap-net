@@ -40,7 +40,9 @@ function Layout() {
         <Sidebar
           onExpandedData={handleChangeExpandedData}
           onCityOriginSelected={handleCityOriginSelected}
+          cityOrigin={cityOrigin}
           onCityDestinitySelected={handleCityDestinitySelected}
+          cityDestinity={cityDestinity}
           onTransport={handleTransport}
         />
         <Content expandedData={expandedData} cityOrigin={cityOrigin} cityDestinity={cityDestinity} transport={transport}/>

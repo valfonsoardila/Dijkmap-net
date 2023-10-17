@@ -14,7 +14,9 @@ import Position from "../../../assets/positions/Positions.json";
 function Sidebar({
   onExpandedData,
   onCityOriginSelected,
+  cityOrigin,
   onCityDestinitySelected,
+  cityDestinity,
   onTransport,
 }) {
   const [expandedData, setExpandedData] = useState(false);
@@ -70,6 +72,7 @@ function Sidebar({
         const longitude = Position[cities[i]].lon;
         const location = { lat: latitude, lon: longitude };
         onCityDestinitySelected(location);
+        getDistance(location);
         break;
       }
     }
@@ -121,6 +124,11 @@ function Sidebar({
   };
   const toggleExpandedConfig = () => {
     setExpandedConfig(!expandedConfig);
+  };
+  const getDistance = (destinity) => {
+    if (destinity.lat !== undefined && destinity.lon !== undefined) {
+      
+    }
   };
   return (
     <div className="sidebar">

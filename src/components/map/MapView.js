@@ -59,7 +59,7 @@ const MapView = ({ onExpandedData, cityOrigin, cityDestinity, transport }) => {
           ],
           routeWhileDragging: true,
           autoRoute: true,
-          showAlternatives: true,
+          //showAlternatives: true,
           altLineOptions: {
             styles: [
               { color: "black", opacity: 0.15, weight: 9 },
@@ -88,7 +88,7 @@ const MapView = ({ onExpandedData, cityOrigin, cityDestinity, transport }) => {
           ],
           routeWhileDragging: true,
           autoRoute: true,
-          showAlternatives: true,
+          //showAlternatives: true,
           altLineOptions: {
             styles: [
               { color: "black", opacity: 0.15, weight: 9 },
@@ -117,7 +117,7 @@ const MapView = ({ onExpandedData, cityOrigin, cityDestinity, transport }) => {
           ],
           routeWhileDragging: true,
           autoRoute: true,
-          showAlternatives: true,
+          //showAlternatives: true,
           altLineOptions: {
             styles: [
               { color: "black", opacity: 0.15, weight: 9 },
