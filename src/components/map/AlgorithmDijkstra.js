@@ -2,9 +2,25 @@ import React, {useState} from "react";
 import Position from "../../assets/positions/Positions.json";
 import Transport from "../../assets/data/Transports.json";
 
-const AlgorithmDijkstra = ({ onExpandedData, cityOrigin, cityDestinity, transport }) => {
+const AlgorithmDijkstra = ({ cityOrigin, cityDestinity, transport, onEstimtedTime, onEstimtedDistance, onEstimtedRoute }) => {
+    const [estimtedTime, setEstimtedTime] = useState(0);
+    const [estimtedDistance, setEstimtedDistance] = useState(0);
+    const [estimtedRoute, setEstimtedRoute] = useState([]);
     const [selectedVehicle, setSelectedVehicle] = useState("Bus"); // Tipo de vehículo por defecto
-  
+    
+    const handleEstimtedTime = (estimtedTime) => {
+      setEstimtedTime(estimtedTime);
+      onEstimtedTime(estimtedTime);
+    }
+    const handleEstimtedDistance = (estimtedDistance) => {
+      setEstimtedDistance(estimtedDistance);
+      onEstimtedDistance(estimtedDistance);
+    }
+    const handleEstimtedRoute = (estimtedRoute) => {
+      setEstimtedRoute(estimtedRoute);
+      onEstimtedRoute(estimtedRoute);
+    }
+
     const findShortestPath = (start, end) => {
       // Función para calcular la distancia entre dos coordenadas (Haversine formula)
       const haversine = (lat1, lon1, lat2, lon2) => {
@@ -41,18 +57,24 @@ const AlgorithmDijkstra = ({ onExpandedData, cityOrigin, cityDestinity, transpor
   
         // Lista de nodos en la ruta (puedes modificar esto según la implementación de Dijkstra)
         const nodeList = ["Bogotá", "Node2", "Node3", "Medellín"];
-  
+
         return { distance, time, nodeList };
       } else {
         return { distance, time: null, nodeList: [] }; // Manejar el caso si no se encuentra el vehículo
       }
     };
+    
   
     const startNode = "Valledupar";
-    const endNode = "Leticia";
+    const endNode = "Sincelejo";
   
     const { distance, time, nodeList } = findShortestPath(startNode, endNode);
-  
+    const calculateRoute = () => {
+      handleEstimtedTime(time); // Establece el valor de tiempo en el estado
+      handleEstimtedDistance(distance); // Establece el valor de distancia en el estado
+      handleEstimtedRoute(nodeList); // Establece el valor de nodeList en el estado
+    };
+
     return (
       <div>
         <h1>
@@ -72,6 +94,7 @@ const AlgorithmDijkstra = ({ onExpandedData, cityOrigin, cityDestinity, transpor
             </option>
           ))}
         </select>
+        <button onClick={calculateRoute}>Calcular Ruta</button>
       </div>
     );
   };

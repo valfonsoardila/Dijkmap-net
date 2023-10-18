@@ -10,6 +10,9 @@ function Layout() {
   const [cityOrigin, setCityOrigin] = useState("");
   const [cityDestinity, setCityDestinity] = useState("");
   const [transport, setTransport] = useState("");
+  const [estimtedTime, setEstimtedTime] = useState(0);
+  const [estimtedDistance, setEstimtedDistance] = useState(0);
+  const [estimtedRoute, setEstimtedRoute] = useState([]);
 
   const handleCityOriginSelected = (cityOrigin) => {
     setCityOrigin(cityOrigin);
@@ -28,6 +31,17 @@ function Layout() {
     console.log(expandedData);
   };
 
+  const handleEstimtedTime = (estimtedTime) => {
+    setEstimtedTime(estimtedTime);
+    
+  }
+  const handleEstimtedDistance = (estimtedDistance) => {
+    setEstimtedDistance(estimtedDistance);
+  }
+  const handleEstimtedRoute = (estimtedRoute) => {
+    setEstimtedRoute(estimtedRoute);
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -50 }}
@@ -44,8 +58,20 @@ function Layout() {
           onCityDestinitySelected={handleCityDestinitySelected}
           cityDestinity={cityDestinity}
           onTransport={handleTransport}
+          transport={transport}
+          estimtedTime={estimtedTime}
+          estimtedDistance={estimtedDistance}
+          estimtedRoute={estimtedRoute}
         />
-        <Content expandedData={expandedData} cityOrigin={cityOrigin} cityDestinity={cityDestinity} transport={transport}/>
+        <Content
+          expandedData={expandedData}
+          cityOrigin={cityOrigin}
+          cityDestinity={cityDestinity}
+          transport={transport}
+          onEstimtedTime={handleEstimtedTime}
+          onEstimtedDistance={handleEstimtedDistance}
+          onEstimtedRoute={handleEstimtedRoute}
+        />
       </div>
     </motion.div>
   );
