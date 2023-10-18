@@ -1,5 +1,6 @@
 import React from "react";
 import MapView from "../../map/MapView";
+import Dijkstra from "../../map/dijkstra/Dijkstra";
 import "./Content.css";
 import { motion } from "framer-motion";
 
@@ -12,7 +13,8 @@ function Content({ expandedData, cityOrigin, cityDestinity, transport }) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.7 }}
     >
-      <MapView onExpandedData={expandedData} cityOrigin={cityOrigin} cityDestinity={cityDestinity} transport={transport}/>
+      <Dijkstra />
+      {/* <MapView onExpandedData={expandedData} cityOrigin={cityOrigin} cityDestinity={cityDestinity} transport={transport}/> */}
     </motion.div>
   );
 }

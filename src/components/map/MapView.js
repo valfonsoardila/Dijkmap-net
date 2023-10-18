@@ -8,7 +8,7 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarked } from "@fortawesome/free-solid-svg-icons";
 import "leaflet-routing-machine";
-import "leaflet-control-custom";
+import "leaflet-control-custom"; // Asegúrate de tener el archivo Awns.json en la misma ubicación que tu componente
 import { motion } from "framer-motion";
 
 const MapView = ({ onExpandedData, cityOrigin, cityDestinity, transport }) => {

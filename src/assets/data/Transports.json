@@ -1,18 +1,18 @@
 [
     {
         "Tipo":"Bus",
-        "Velocidad":"60km/h"
+        "Velocidad":"37km/h"
     },
     {
         "Tipo":"Carro",
-        "Velocidad":"80km/h"
+        "Velocidad":"42km/h"
     },
     {
         "Tipo":"Moto",
-        "Velocidad":"100km/h"
+        "Velocidad":"50km/h"
     },
     {
         "Tipo":"Avion",
-        "Velocidad":"600km/h"
+        "Velocidad":"278km/h"
     }
 ]
