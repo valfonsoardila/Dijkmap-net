@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import Position from "../../../assets/positions/Positions.json";
-import Transport from "../../../assets/data/Transports.json";
+import Position from "../../assets/positions/Positions.json";
+import Transport from "../../assets/data/Transports.json";
 
-const Dijkstra = () => {
+const AlgorithmDijkstra = () => {
     const [selectedVehicle, setSelectedVehicle] = useState("Bus"); // Tipo de vehículo por defecto
   
     const findShortestPath = (start, end) => {
@@ -76,6 +76,6 @@ const Dijkstra = () => {
     );
   };
   
-  export default Dijkstra;
+  export default AlgorithmDijkstra;
   
   

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./MapView.css";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
-import Markers from "./markers/Markers";
+import Markers from "../markers/Markers";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
