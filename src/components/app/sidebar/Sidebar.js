@@ -25,14 +25,12 @@ function Sidebar({
   const [expandedData, setExpandedData] = useState(false);
   const [expandedResults, setExpandedResults] = useState(false);
   const [expandedConfig, setExpandedConfig] = useState(false);
-  const options = ["Ninguno", "Opción 2", "Opción 3"];
-  const [selectedOptionOrigin, setSelectedOptionOrigin] = useState(options[0]);
-  const [selectedOptionDestination, setSelectedOptionDestination] = useState(
-    options[0]
-  );
-  const [selectedOptionTransport, setSelectedOptionTransport] = useState(
-    options[0]
-  );
+  const [selectedOptionOrigin, setSelectedOptionOrigin] = useState("Origen");
+  const [selectedOptionDestination, setSelectedOptionDestination] =
+    useState("Destino");
+  const [selectedOptionTransport, setSelectedOptionTransport] =
+    useState("Transporte");
+  const [transportVelocity, setTransportVelocity] = useState("0km/h");
   const [checkData, setcheckData] = useState(false);
   const [checkResults, setcheckResults] = useState(false);
 
@@ -45,7 +43,6 @@ function Sidebar({
   };
   const handleChangeOrigen = (event) => {
     setSelectedOptionOrigin(event.target.value);
-    console.log(event.target.value);
     findLocationOrigin(event.target.value);
   };
   const findLocationOrigin = (city) => {
@@ -55,7 +52,7 @@ function Sidebar({
       if (cities[i] === city) {
         const latitude = Position[cities[i]].lat;
         const longitude = Position[cities[i]].lon;
-        const location = { lat: latitude, lon: longitude };
+        const location = {city: city, lat: latitude, lon: longitude };
         onCityOriginSelected(location);
         break;
       }
@@ -73,9 +70,8 @@ function Sidebar({
       if (cities[i] === city) {
         const latitude = Position[cities[i]].lat;
         const longitude = Position[cities[i]].lon;
-        const location = { lat: latitude, lon: longitude };
+        const location = { city: city, lat: latitude, lon: longitude };
         onCityDestinitySelected(location);
-        getDistance(location);
         break;
       }
     }
@@ -84,40 +80,13 @@ function Sidebar({
     setSelectedOptionTransport(event.target.value);
     findLocationTransport(event.target.value);
   };
-  const findLocationTransport = (vehicle) => {
-    //necesito recorrer el json de posiciones y encontrar la posicion de la ciudad
-    const transports = Transport.map((transport) => transport.Tipo);
-    for (let i = 0; i < transports.length; i++) {
-      if (transports[i] === vehicle) {
-        var transport = "";
-        if (vehicle === "Avion") {
-          transport = "airplane";
-        } else {
-          if (vehicle === "Bus") {
-            transport = "bus";
-          } else {
-            if (vehicle === "Carro") {
-              transport = "car";
-            } else {
-              if (vehicle === "Moto") {
-                transport = "bike";
-              } else {
-                if (vehicle === "Bicicleta") {
-                  transport = "bicycle";
-                } else {
-                  if (vehicle === "Caminando") {
-                    transport = "pedestrian";
-                  }
-                }
-              }
-            }
-          }
-        }
-        console.log(transport);
-        onTransport(transport);
-        break;
-      }
-    }
+  const findLocationTransport = (transport) => {
+    const selectedVehicleData = Transport.find(
+      (vehicle) => vehicle.Tipo === transport
+    );
+    console.log(selectedVehicleData.Velocidad);
+    onTransport(selectedVehicleData);
+    setTransportVelocity(selectedVehicleData.Velocidad);
   };
   const toggleExpandedData = () => {
     setExpandedData(!expandedData);
@@ -127,11 +96,6 @@ function Sidebar({
   };
   const toggleExpandedConfig = () => {
     setExpandedConfig(!expandedConfig);
-  };
-  const getDistance = (destinity) => {
-    if (destinity.lat !== undefined && destinity.lon !== undefined) {
-      
-    }
   };
   return (
     <div className="sidebar">
@@ -156,6 +120,9 @@ function Sidebar({
                       value={selectedOptionOrigin}
                       onChange={handleChangeOrigen}
                     >
+                      <option value="Origen" disabled hidden>
+                        Origen
+                      </option>
                       {Object.keys(Cities).map((city) => (
                         <option key={city} value={Cities[city]}>
                           {Cities[city]}
@@ -169,6 +136,9 @@ function Sidebar({
                       value={selectedOptionDestination}
                       onChange={handleChangeDestination}
                     >
+                      <option value="Destino" disabled hidden>
+                        Destino
+                      </option>
                       {Object.keys(Cities).map((city) => (
                         <option key={city} value={Cities[city]}>
                           {Cities[city]}
@@ -182,9 +152,12 @@ function Sidebar({
                       value={selectedOptionTransport}
                       onChange={handleChangeTransport}
                     >
-                      {Object.keys(Transport).map((key) => (
-                        <option key={key} value={Transport[key].Tipo}>
-                          {Transport[key].Tipo}
+                      <option value="Transporte" disabled hidden>
+                        Transporte
+                      </option>
+                      {Transport.map((vehicle, index) => (
+                        <option key={index} value={vehicle.Tipo}>
+                          {vehicle.Tipo}
                         </option>
                       ))}
                     </select>
@@ -204,11 +177,11 @@ function Sidebar({
                 <div className="collapsible-content">
                   <div className="collapsible-options">
                     <span># Nodos: </span>
-                    <p>{estimtedRoute.length}</p>
+                    <p>{estimtedRoute}</p>
                   </div>
                   <div className="collapsible-options">
                     <span>Lista de nodos: </span>
-                    <p>{estimtedRoute.join(" -> ")}</p>
+                    {/* <p>{estimtedRoute.join(" -> ")}</p> */}
                   </div>
                   <div className="collapsible-options">
                     <span>Distancia: </span>
@@ -216,11 +189,11 @@ function Sidebar({
                   </div>
                   <div className="collapsible-options">
                     <span>Duracion: </span>
-                    <p>{estimtedTime} min</p>
+                    <p>{estimtedTime} horas</p>
                   </div>
                   <div className="collapsible-options">
                     <span>Veloc: </span>
-                    <p>∞</p>
+                    <p>{transportVelocity} km/h</p>
                   </div>
                 </div>
               )}

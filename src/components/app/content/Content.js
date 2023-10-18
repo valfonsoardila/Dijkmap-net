@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import MapView from "../../map/model/MapView";
+// import MapView from "../../map/map-model/MapView";
 import AlgorithmDijkstra from "../../map/AlgorithmDijkstra";
 import "./Content.css";
 import { motion } from "framer-motion";
