@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 // import MapView from "../../map/map-model/MapView";
 import AlgorithmDijkstra from "../../map/AlgorithmDijkstra";
 import "./Content.css";
 import { motion } from "framer-motion";
 
-function Content({ cityOrigin, cityDestinity, transport, onEstimtedTime, onEstimtedDistance, onEstimtedRoute }) {
+function Content({ cityOrigin, cityDestinity, transport, onEstimtedTime, onEstimtedDistance, onEstimtedRoute, onRoute }) {
   
   const handleEstimtedTime = (estimtedTime) => {
     onEstimtedTime(estimtedTime);
@@ -14,6 +14,9 @@ function Content({ cityOrigin, cityDestinity, transport, onEstimtedTime, onEstim
   }
   const handleEstimtedRoute = (estimtedRoute) => {
     onEstimtedRoute(estimtedRoute);
+  }
+  const handleRoute = (route) => {
+    onRoute(route);
   }
 
   return (
@@ -31,6 +34,7 @@ function Content({ cityOrigin, cityDestinity, transport, onEstimtedTime, onEstim
         onEstimtedTime={handleEstimtedTime}
         onEstimtedDistance={handleEstimtedDistance}
         onEstimtedRoute={handleEstimtedRoute}
+        onRoute={handleRoute}
       />
       {/* <MapView onExpandedData={expandedData} cityOrigin={cityOrigin} cityDestinity={cityDestinity} transport={transport}/> */}
     </motion.div>

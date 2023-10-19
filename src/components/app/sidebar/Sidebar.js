@@ -174,10 +174,10 @@ function Sidebar({
                 <span>Resultados</span>
               </div>
               {expandedResults && (
-                <div className="collapsible-content">
+                <div className="collapsible-content-results">
                   <div className="collapsible-options">
                     <span># Nodos: </span>
-                    <p>{estimtedRoute}</p>
+                    {/* <p>{estimtedRoute}</p> */}
                   </div>
                   <div className="collapsible-options">
                     <span>Lista de nodos: </span>
