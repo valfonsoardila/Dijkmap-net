@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import Position from "../../assets/positions/Positions.json";
 import Awns from "../../assets/awns/Awns.json";
 import Costs from "../../assets/costs/Costs.json";
-import { faBorderNone } from "@fortawesome/free-solid-svg-icons";
-import { distance } from "framer-motion";
 import MapView from "./map-model/MapView";
+import { motion } from "framer-motion";
+import "./AlgorithmDijkstra.css";
 
 const AlgorithmDijkstra = ({
   cityOrigin,
@@ -149,16 +149,27 @@ const AlgorithmDijkstra = ({
     if (nodeList.length > 0) {
       const route = nodeList.join(" -> ");
       onRoute(route);
+    }else{
+      onRoute("No hay ruta");
     }
   }, [nodeList, onRoute]);
-  
+
   return (
-    <div>
-      <h1>Ruta más corta</h1>
-      <p>Distancia: {distance} km</p>
-      {time !== null && <p>Tiempo estimado: {time} horas</p>}
-      <p>Ruta: {nodeList.join(" -> ")}</p>
-    </div>
+    <motion.div
+      className="container-map"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7 }}
+    >
+      <MapView cityOrigin={cityOrigin} cityDestinity={cityDestinity} transport={transport}/>
+    </motion.div>
+    // <div>
+    //   <h1>Ruta más corta</h1>
+    //   <p>Distancia: {distance} km</p>
+    //   {time !== null && <p>Tiempo estimado: {time} horas</p>}
+    //   <p>Ruta: {nodeList.join(" -> ")}</p>
+    // </div>
   );
 };
 

@@ -19,13 +19,7 @@ function Content({ cityOrigin, cityDestinity, transport, onEstimtedTime, onEstim
   }
 
   return (
-    <motion.div
-      className="content"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.7 }}
-    >
+    <div className="content">
       <AlgorithmDijkstra
         cityOrigin={cityOrigin}
         cityDestinity={cityDestinity}
@@ -36,7 +30,7 @@ function Content({ cityOrigin, cityDestinity, transport, onEstimtedTime, onEstim
         onRoute={handleRoute}
       />
       {/* <MapView onExpandedData={expandedData} cityOrigin={cityOrigin} cityDestinity={cityDestinity} transport={transport}/> */}
-    </motion.div>
+    </div>
   );
 }
 

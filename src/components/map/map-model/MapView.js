@@ -11,7 +11,7 @@ import "leaflet-routing-machine";
 import "leaflet-control-custom"; // Asegúrate de tener el archivo Awns.json en la misma ubicación que tu componente
 import { motion } from "framer-motion";
 
-const MapView = ({ onExpandedData, cityOrigin, cityDestinity, transport }) => {
+const MapView = ({ cityOrigin, cityDestinity, transport }) => {
   const [originCurrent, setOriginCurrent] = useState({ lat: "", lon: "" });
   const [destinityCurrent, setDestinityCurrent] = useState({
     lat: "",
@@ -59,6 +59,7 @@ const MapView = ({ onExpandedData, cityOrigin, cityDestinity, transport }) => {
           ],
           routeWhileDragging: true,
           autoRoute: true,
+          show: false,
           //showAlternatives: true,
           altLineOptions: {
             styles: [
@@ -88,6 +89,7 @@ const MapView = ({ onExpandedData, cityOrigin, cityDestinity, transport }) => {
           ],
           routeWhileDragging: true,
           autoRoute: true,
+          show: false,
           //showAlternatives: true,
           altLineOptions: {
             styles: [
@@ -117,6 +119,7 @@ const MapView = ({ onExpandedData, cityOrigin, cityDestinity, transport }) => {
           ],
           routeWhileDragging: true,
           autoRoute: true,
+          show: false,
           //showAlternatives: true,
           altLineOptions: {
             styles: [

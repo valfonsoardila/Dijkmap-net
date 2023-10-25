@@ -214,7 +214,7 @@ function Sidebar({
                       checked={checkData}
                       onChange={handlecheckData}
                     />
-                    <span>Ver datos en pant. </span>
+                    <span>Ver calculos en pant. </span>
                   </div>
                   <div className="collapsible-options">
                     <input

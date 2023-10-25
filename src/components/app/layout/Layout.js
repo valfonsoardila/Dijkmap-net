@@ -30,7 +30,6 @@ function Layout() {
   const handleChangeExpandedData = (expandedData) => {
     setExpandedData(expandedData);
   };
-
   const handleEstimtedTime = (estimtedTime) => {
     setEstimtedTime(estimtedTime);
     
