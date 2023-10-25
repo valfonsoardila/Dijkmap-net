@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 
 function Layout() {
   const [sidebar, setSidebar] = useState(false);
+  const [card, setCard] = useState(false);
   const [expandedData, setExpandedData] = useState(false);
   const [cityOrigin, setCityOrigin] = useState("");
   const [cityDestinity, setCityDestinity] = useState("");
@@ -18,6 +19,9 @@ function Layout() {
 
   const sidebarClick = () => {
     setSidebar(!sidebar);
+  };
+  const cardClick = () => {
+    setCard(!card);
   };
   const handleCityOriginSelected = (cityOrigin) => {
     setCityOrigin(cityOrigin);
@@ -55,7 +59,7 @@ function Layout() {
       transition={{ duration: 0.7, delay: 0.2 }}
       className="background"
     >
-      <Header onSidebarClick={sidebarClick} />
+      <Header onSidebarClick={sidebarClick} onCardClick={cardClick} />
       <div className="main">
         <Sidebar
           sidebarOption={sidebar}
@@ -72,6 +76,7 @@ function Layout() {
           route={route}
         />
         <Content
+          cardOption={card}
           expandedData={expandedData}
           cityOrigin={cityOrigin}
           cityDestinity={cityDestinity}

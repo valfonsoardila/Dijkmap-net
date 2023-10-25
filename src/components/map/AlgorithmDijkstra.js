@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Position from "../../assets/positions/Positions.json";
 import Awns from "../../assets/awns/Awns.json";
-import Costs from "../../assets/costs/Costs.json";
+// import Costs from "../../assets/costs/Costs.json";
 import MapView from "./map-model/MapView";
+import CalculationView from "./calculation-card/CalculationView";
 import { motion } from "framer-motion";
 import "./AlgorithmDijkstra.css";
 
 const AlgorithmDijkstra = ({
+  cardOption,
   cityOrigin,
   cityDestinity,
   transport,
@@ -19,6 +21,7 @@ const AlgorithmDijkstra = ({
   const [endNode, setEndNode] = useState("Valledupar");
   const [distance, setDistance] = useState(0);
   const [time, setTime] = useState(0);
+  const [routeArray, setRouteArray] = useState([]);
   const [nodeList, setNodeList] = useState([]);
 
   //Se usa este hook para calcular la ruta más corta
@@ -148,6 +151,7 @@ const AlgorithmDijkstra = ({
   useEffect(() => {
     if (nodeList.length > 0) {
       const route = nodeList.join(" -> ");
+      setRouteArray(route);
       onRoute(route);
     }else{
       onRoute("No hay ruta");
@@ -162,14 +166,14 @@ const AlgorithmDijkstra = ({
       exit={{ opacity: 0 }}
       transition={{ duration: 0.7 }}
     >
-      <MapView cityOrigin={cityOrigin} cityDestinity={cityDestinity} transport={transport}/>
+      {
+        cardOption ? (
+          <CalculationView distance={distance} time={time} route={routeArray} />
+        ) : (
+          <MapView cityOrigin={cityOrigin} cityDestinity={cityDestinity} transport={transport}/>
+        )
+      }
     </motion.div>
-    // <div>
-    //   <h1>Ruta más corta</h1>
-    //   <p>Distancia: {distance} km</p>
-    //   {time !== null && <p>Tiempo estimado: {time} horas</p>}
-    //   <p>Ruta: {nodeList.join(" -> ")}</p>
-    // </div>
   );
 };
 

@@ -4,7 +4,7 @@ import AlgorithmDijkstra from "../../map/AlgorithmDijkstra";
 import "./Content.css";
 import { motion } from "framer-motion";
 
-function Content({ cityOrigin, cityDestinity, transport, onEstimtedTime, onEstimtedDistance, onNumberNodes, onRoute }) {
+function Content({ cardOption, cityOrigin, cityDestinity, transport, onEstimtedTime, onEstimtedDistance, onNumberNodes, onRoute }) {
   const handleEstimtedTime = (estimtedTime) => {
     onEstimtedTime(estimtedTime);
   }
@@ -21,6 +21,7 @@ function Content({ cityOrigin, cityDestinity, transport, onEstimtedTime, onEstim
   return (
     <div className="content">
       <AlgorithmDijkstra
+        cardOption={cardOption}
         cityOrigin={cityOrigin}
         cityDestinity={cityDestinity}
         transport={transport}
