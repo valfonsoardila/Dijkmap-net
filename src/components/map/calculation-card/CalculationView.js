@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import "./CalculationView.css";
 
-const CalculationView = ({ distance, time, route }) => {
+const CalculationView = ({ distance, time, route, graph }) => {
   return (
     <motion.div
       className="calculation-card"
@@ -14,7 +14,13 @@ const CalculationView = ({ distance, time, route }) => {
       <h1>Ruta más corta</h1>
       <p>Distancia: {distance} km</p>
       {time !== null && <p>Tiempo estimado: {time} horas</p>}
-      <p>Ruta: {route}</p>
+      <p>Nodos: {route}</p>
+      <div className="matrix">
+        <div className="matrix-header">
+          <h2>Matriz de adyacencia</h2>
+        </div>
+        <div className="matrix-body"></div>
+      </div>
     </motion.div>
   );
 };

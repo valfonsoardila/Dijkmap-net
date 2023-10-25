@@ -21,6 +21,7 @@ const AlgorithmDijkstra = ({
   const [endNode, setEndNode] = useState("Valledupar");
   const [distance, setDistance] = useState(0);
   const [time, setTime] = useState(0);
+  const [graph, setGraph] = useState({});
   const [routeArray, setRouteArray] = useState([]);
   const [nodeList, setNodeList] = useState([]);
 
@@ -33,8 +34,10 @@ const AlgorithmDijkstra = ({
         start = cityOrigin.city;
         end = cityDestinity.city;
         const graph = buildGraph();
+        console.log(graph);
         const optimalRoute = dijkstra(graph, start, end);
         if (optimalRoute.distance > 0) {
+          setGraph(graph);
           const distance = optimalRoute.distance.toFixed(2);
           onEstimtedDistance(distance);
           setDistance(optimalRoute.distance.toFixed(2));
@@ -168,7 +171,7 @@ const AlgorithmDijkstra = ({
     >
       {
         cardOption ? (
-          <CalculationView distance={distance} time={time} route={routeArray} />
+          <CalculationView distance={distance} time={time} route={routeArray} graph={graph} />
         ) : (
           <MapView cityOrigin={cityOrigin} cityDestinity={cityDestinity} transport={transport}/>
         )
