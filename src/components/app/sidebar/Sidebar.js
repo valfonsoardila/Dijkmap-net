@@ -20,7 +20,8 @@ function Sidebar({
   onTransport,
   estimtedTime,
   estimtedDistance,
-  estimtedRoute,
+  numberNodes,
+  route,
 }) {
   const [expandedData, setExpandedData] = useState(false);
   const [expandedResults, setExpandedResults] = useState(false);
@@ -60,7 +61,6 @@ function Sidebar({
   };
   const handleChangeDestination = (event) => {
     setSelectedOptionDestination(event.target.value);
-    console.log(event.target.value);
     findLocationDestinity(event.target.value);
   };
   const findLocationDestinity = (city) => {
@@ -177,11 +177,11 @@ function Sidebar({
                 <div className="collapsible-content-results">
                   <div className="collapsible-options">
                     <span># Nodos: </span>
-                    {/* <p>{estimtedRoute}</p> */}
+                    <p>{numberNodes}</p>
                   </div>
                   <div className="collapsible-options">
                     <span>Lista de nodos: </span>
-                    {/* <p>{estimtedRoute.join(" -> ")}</p> */}
+                    <p>{route}</p>
                   </div>
                   <div className="collapsible-options">
                     <span>Distancia: </span>

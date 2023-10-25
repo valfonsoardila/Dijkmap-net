@@ -12,7 +12,7 @@ function Layout() {
   const [transport, setTransport] = useState("");
   const [estimtedTime, setEstimtedTime] = useState(0);
   const [estimtedDistance, setEstimtedDistance] = useState(0);
-  const [estimtedRoute, setEstimtedRoute] = useState(0);
+  const [numberNodes, setNumberNodes] = useState(0);
   const [route, setRoute] = useState([]);
 
   const handleCityOriginSelected = (cityOrigin) => {
@@ -29,7 +29,6 @@ function Layout() {
   };
   const handleChangeExpandedData = (expandedData) => {
     setExpandedData(expandedData);
-    console.log(expandedData);
   };
 
   const handleEstimtedTime = (estimtedTime) => {
@@ -39,8 +38,8 @@ function Layout() {
   const handleEstimtedDistance = (estimtedDistance) => {
     setEstimtedDistance(estimtedDistance);
   }
-  const handleEstimtedRoute = (estimtedRoute) => {
-    setEstimtedRoute(estimtedRoute);
+  const handleNumberNodes = (numberNodes) => {
+    setNumberNodes(numberNodes);
   }
   const handleRoute = (route) => {
     setRoute(route);
@@ -65,7 +64,7 @@ function Layout() {
           transport={transport}
           estimtedTime={estimtedTime}
           estimtedDistance={estimtedDistance}
-          estimtedRoute={estimtedRoute}
+          numberNodes={numberNodes}
           route={route}
         />
         <Content
@@ -75,7 +74,7 @@ function Layout() {
           transport={transport}
           onEstimtedTime={handleEstimtedTime}
           onEstimtedDistance={handleEstimtedDistance}
-          onEstimtedRoute={handleEstimtedRoute}
+          onNumberNodes={handleNumberNodes}
           onRoute={handleRoute}
         />
       </div>

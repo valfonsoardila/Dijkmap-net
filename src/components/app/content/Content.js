@@ -4,16 +4,15 @@ import AlgorithmDijkstra from "../../map/AlgorithmDijkstra";
 import "./Content.css";
 import { motion } from "framer-motion";
 
-function Content({ cityOrigin, cityDestinity, transport, onEstimtedTime, onEstimtedDistance, onEstimtedRoute, onRoute }) {
-  
+function Content({ cityOrigin, cityDestinity, transport, onEstimtedTime, onEstimtedDistance, onNumberNodes, onRoute }) {
   const handleEstimtedTime = (estimtedTime) => {
     onEstimtedTime(estimtedTime);
   }
   const handleEstimtedDistance = (estimtedDistance) => {
     onEstimtedDistance(estimtedDistance);
   }
-  const handleEstimtedRoute = (estimtedRoute) => {
-    onEstimtedRoute(estimtedRoute);
+  const handleNumberNodes = (numberNodes) => {
+    onNumberNodes(numberNodes);
   }
   const handleRoute = (route) => {
     onRoute(route);
@@ -33,7 +32,7 @@ function Content({ cityOrigin, cityDestinity, transport, onEstimtedTime, onEstim
         transport={transport}
         onEstimtedTime={handleEstimtedTime}
         onEstimtedDistance={handleEstimtedDistance}
-        onEstimtedRoute={handleEstimtedRoute}
+        onNumberNodes={handleNumberNodes}
         onRoute={handleRoute}
       />
       {/* <MapView onExpandedData={expandedData} cityOrigin={cityOrigin} cityDestinity={cityDestinity} transport={transport}/> */}
