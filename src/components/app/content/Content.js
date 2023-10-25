@@ -29,7 +29,6 @@ function Content({ cityOrigin, cityDestinity, transport, onEstimtedTime, onEstim
         onNumberNodes={handleNumberNodes}
         onRoute={handleRoute}
       />
-      {/* <MapView onExpandedData={expandedData} cityOrigin={cityOrigin} cityDestinity={cityDestinity} transport={transport}/> */}
     </div>
   );
 }

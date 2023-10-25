@@ -12,6 +12,7 @@ import Transport from "../../../assets/data/Transports.json";
 import Position from "../../../assets/positions/Positions.json";
 
 function Sidebar({
+  sidebarOption,
   onExpandedData,
   onCityOriginSelected,
   cityOrigin,
@@ -98,7 +99,7 @@ function Sidebar({
     setExpandedConfig(!expandedConfig);
   };
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${sidebarOption ? 'active' : ''}`}>
       <div className="sidebar__logo">
         <img src={logoPNG} alt="logo" />
         <h1>DijkMap Net</h1>

@@ -6,6 +6,7 @@ import Content from "../content/Content.js";
 import { motion } from "framer-motion";
 
 function Layout() {
+  const [sidebar, setSidebar] = useState(false);
   const [expandedData, setExpandedData] = useState(false);
   const [cityOrigin, setCityOrigin] = useState("");
   const [cityDestinity, setCityDestinity] = useState("");
@@ -15,6 +16,9 @@ function Layout() {
   const [numberNodes, setNumberNodes] = useState(0);
   const [route, setRoute] = useState([]);
 
+  const sidebarClick = () => {
+    setSidebar(!sidebar);
+  };
   const handleCityOriginSelected = (cityOrigin) => {
     setCityOrigin(cityOrigin);
     console.log(cityOrigin);
@@ -51,9 +55,10 @@ function Layout() {
       transition={{ duration: 0.7, delay: 0.2 }}
       className="background"
     >
-      <Header />
+      <Header onSidebarClick={sidebarClick} />
       <div className="main">
         <Sidebar
+          sidebarOption={sidebar}
           onExpandedData={handleChangeExpandedData}
           onCityOriginSelected={handleCityOriginSelected}
           cityOrigin={cityOrigin}
