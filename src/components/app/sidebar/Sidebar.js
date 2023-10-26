@@ -186,15 +186,15 @@ function Sidebar({
                   </div>
                   <div className="collapsible-options">
                     <span>Distancia: </span>
-                    <p>{estimtedDistance} km</p>
+                    <p>{estimtedDistance}km</p>
                   </div>
                   <div className="collapsible-options">
                     <span>Duracion: </span>
-                    <p>{estimtedTime} horas</p>
+                    <p>{estimtedTime}horas</p>
                   </div>
                   <div className="collapsible-options">
                     <span>Veloc: </span>
-                    <p>{transportVelocity} km/h</p>
+                    <p>{transportVelocity}</p>
                   </div>
                 </div>
               )}
