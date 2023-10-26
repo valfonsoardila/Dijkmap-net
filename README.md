@@ -12,7 +12,7 @@ Aplicacion web con algoritmo de Dijkstra basado en ruta mas corta de pedidos. He
 
 ## `Algoritmo`
 
-![Dijkstra](https://github.com/VictorArdila/Dijkmap-net/assets/89551043/e51ef029-1588-413f-932a-5387334d9d48)
+![Dijkstra](https://github.com/VictorArdila/Dijkmap-net/assets/89551043/c73dff30-ae8c-489f-905a-b5661294bb1f)¿
 
 ## `Modelo Nativo`
 
