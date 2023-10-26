@@ -173,7 +173,7 @@ const AlgorithmDijkstra = ({
         cardOption ? (
           <CalculationView distance={distance} time={time} route={routeArray} graph={graph} />
         ) : (
-          <MapView cityOrigin={cityOrigin} cityDestinity={cityDestinity} transport={transport}/>
+          <MapView route={routeArray} />
         )
       }
     </motion.div>
