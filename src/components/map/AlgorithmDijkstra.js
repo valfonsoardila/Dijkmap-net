@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 import "./AlgorithmDijkstra.css";
 
 const AlgorithmDijkstra = ({
+  checkNodes,
+  checkSeeRoute,
   cardOption,
   cityOrigin,
   cityDestinity,
@@ -173,7 +175,7 @@ const AlgorithmDijkstra = ({
         cardOption ? (
           <CalculationView distance={distance} time={time} route={routeArray} graph={graph} />
         ) : (
-          <MapView route={routeArray} />
+          <MapView route={routeArray} checkNodes={checkNodes} checkSeeRoute={checkSeeRoute} />
         )
       }
     </motion.div>

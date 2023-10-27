@@ -8,7 +8,8 @@ import { motion } from "framer-motion";
 function Layout() {
   const [sidebar, setSidebar] = useState(false);
   const [card, setCard] = useState(false);
-  const [expandedData, setExpandedData] = useState(false);
+  const [checkNodes, setCheckNodes] = useState(false);
+  const [checkSeeRoute, setCheckSeeRoute] = useState(false);
   const [cityOrigin, setCityOrigin] = useState("");
   const [cityDestinity, setCityDestinity] = useState("");
   const [transport, setTransport] = useState("");
@@ -35,8 +36,12 @@ function Layout() {
     setTransport(transport);
     console.log(transport);
   };
-  const handleChangeExpandedData = (expandedData) => {
-    setExpandedData(expandedData);
+  const handleCheckNodes = (checkNodes) => {
+    console.log(checkNodes);
+    setCheckNodes(checkNodes);
+  };
+  const handleCheckSeeRoute = (checkSeeRoute) => {
+    setCheckSeeRoute(checkSeeRoute);
   };
   const handleEstimtedTime = (estimtedTime) => {
     setEstimtedTime(estimtedTime);
@@ -63,7 +68,8 @@ function Layout() {
       <div className="main">
         <Sidebar
           sidebarOption={sidebar}
-          onExpandedData={handleChangeExpandedData}
+          onCheckNodes={handleCheckNodes}
+          onCheckSeeRoute={handleCheckSeeRoute}
           onCityOriginSelected={handleCityOriginSelected}
           cityOrigin={cityOrigin}
           onCityDestinitySelected={handleCityDestinitySelected}
@@ -77,7 +83,8 @@ function Layout() {
         />
         <Content
           cardOption={card}
-          expandedData={expandedData}
+          checkNodes={checkNodes}
+          checkSeeRoute={checkSeeRoute}
           cityOrigin={cityOrigin}
           cityDestinity={cityDestinity}
           transport={transport}

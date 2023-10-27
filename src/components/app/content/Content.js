@@ -1,10 +1,8 @@
 import React from "react";
-// import MapView from "../../map/map-model/MapView";
 import AlgorithmDijkstra from "../../map/AlgorithmDijkstra";
 import "./Content.css";
-import { motion } from "framer-motion";
 
-function Content({ cardOption, cityOrigin, cityDestinity, transport, onEstimtedTime, onEstimtedDistance, onNumberNodes, onRoute }) {
+function Content({ checkNodes, checkSeeRoute, cardOption, cityOrigin, cityDestinity, transport, onEstimtedTime, onEstimtedDistance, onNumberNodes, onRoute }) {
   const handleEstimtedTime = (estimtedTime) => {
     onEstimtedTime(estimtedTime);
   }
@@ -22,6 +20,8 @@ function Content({ cardOption, cityOrigin, cityDestinity, transport, onEstimtedT
     <div className="content">
       <AlgorithmDijkstra
         cardOption={cardOption}
+        checkNodes={checkNodes}
+        checkSeeRoute={checkSeeRoute}
         cityOrigin={cityOrigin}
         cityDestinity={cityDestinity}
         transport={transport}

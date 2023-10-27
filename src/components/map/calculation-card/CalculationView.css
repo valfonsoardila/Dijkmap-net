@@ -113,9 +113,9 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  background-color: rgba(20, 20, 20, 0.9);
+  background-color: rgba(193, 220, 181, 0.9);
   border: 1px solid rgba(0, 0, 0, 0.2);
-  color: #fff;
+  color: #000;
   /* white-space: nowrap; */
 }
 .matrix-body td {

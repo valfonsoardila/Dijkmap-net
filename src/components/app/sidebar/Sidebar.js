@@ -13,7 +13,8 @@ import Position from "../../../assets/positions/Positions.json";
 
 function Sidebar({
   sidebarOption,
-  onExpandedData,
+  onCheckNodes,
+  onCheckSeeRoute,
   onCityOriginSelected,
   cityOrigin,
   onCityDestinitySelected,
@@ -33,15 +34,16 @@ function Sidebar({
   const [selectedOptionTransport, setSelectedOptionTransport] =
     useState("Transporte");
   const [transportVelocity, setTransportVelocity] = useState("0km/h");
-  const [checkData, setcheckData] = useState(false);
-  const [checkResults, setcheckResults] = useState(false);
+  const [checkNodes, setCheckNodes] = useState(false);
+  const [checkSeeRoute, setCheckSeeRoute] = useState(false);
 
-  const handlecheckData = () => {
-    setcheckData(!checkData);
-    onExpandedData(checkData);
+  const handlecheckNodes = () => {
+    setCheckNodes(!checkNodes);
+    onCheckNodes(checkNodes);
   };
-  const handlecheckResults = () => {
-    setcheckResults(!checkResults);
+  const handlecheckSeeRoute = () => {
+    setCheckSeeRoute(!checkSeeRoute);
+    onCheckSeeRoute(checkSeeRoute);
   };
   const handleChangeOrigen = (event) => {
     setSelectedOptionOrigin(event.target.value);
@@ -212,18 +214,18 @@ function Sidebar({
                   <div className="collapsible-options">
                     <input
                       type="checkbox"
-                      checked={checkData}
-                      onChange={handlecheckData}
+                      checked={checkNodes}
+                      onChange={handlecheckNodes}
                     />
-                    <span>Ver calculos en pant. </span>
+                    <span>Ver nodos en pant. </span>
                   </div>
                   <div className="collapsible-options">
                     <input
                       type="checkbox"
-                      checked={checkResults}
-                      onChange={handlecheckResults}
+                      checked={checkSeeRoute}
+                      onChange={handlecheckSeeRoute}
                     />
-                    <span>Ver resultados en pant. </span>
+                    <span>Ver ruta en pant. </span>
                   </div>
                 </div>
               )}

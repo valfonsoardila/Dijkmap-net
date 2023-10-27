@@ -3,7 +3,7 @@ import { Marker } from "react-leaflet";
 import IconLocation from './IconLocation';
 import Positions from '../../../assets/positions/Positions.json';
 
-const Markers = () => {
+const Markers = ({checkNodes}) => {
     return(
         <>
             {Object.keys(Positions).map(city => (

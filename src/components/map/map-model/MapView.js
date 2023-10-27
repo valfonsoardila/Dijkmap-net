@@ -12,7 +12,7 @@ import "leaflet-control-custom"; // Asegúrate de tener el archivo Awns.json en 
 import { motion } from "framer-motion";
 import Position from "../../../assets/positions/Positions.json";
 
-const MapView = (route) => {
+const MapView = (route, {checkNodes, checkSeeRoute}) => {
   const [originCurrent, setOriginCurrent] = useState({ lat: "", lon: "" });
   const [destinityCurrent, setDestinityCurrent] = useState({
     lat: "",
@@ -23,21 +23,6 @@ const MapView = (route) => {
     currentLocation: { lat: "4.570868", lng: "-74.297333" },
     zoom: 6,
   });
-
-  // function ClearRouting() {
-  //   const map = useMap();
-  //   map.eachLayer(function (layer) {
-  //     if (layer instanceof L.Routing.Control) {
-  //       map.removeControl(layer);
-  //     }
-  //   });
-  // }
-  // const onSaveLocation = () => {
-  //   console.log(cityOrigin);
-  //   setOriginCurrent(cityOrigin);
-  //   console.log(cityDestinity);
-  //   setDestinityCurrent(cityDestinity);
-  // };
   function buscarRuta(route) {
     const latitudes = [];
     const longitudes = [];
@@ -83,10 +68,10 @@ const MapView = (route) => {
           waypoints,
           routeWhileDragging: true,
           autoRoute: true,
-          show: false, // Esto muestra la ruta en el mapa
-          lineOptions: {
-            styles: [{ color: "blue", opacity: 0.6, weight: 4 }],
-          },
+          show: checkSeeRoute, // Esto muestra la ruta en el mapa
+          // lineOptions: {
+          //   styles: [{ color: "blue", opacity: 0.6, weight: 4 }],
+          // },
           createMarker: function (i, waypoint, n) {
             // Crea marcadores para los puntos de ruta (opcional)
             return null;
@@ -94,40 +79,6 @@ const MapView = (route) => {
         }).addTo(map);
       }
     }, [ubicaciones, map]);
-    //console.log(ubicaciones);
-    //Guarda los datos de origen y destino
-    // useEffect(() => {
-    //   onSaveLocation();
-    // }, [origin, destinity]);
-    // useEffect(() => {
-    //   if (origin !== originCurrent && destinity === destinityCurrent) {
-    //     map.eachLayer(function (layer) {
-    //       if (layer instanceof L.Routing.Control) {
-    //         map.removeControl(layer);
-    //       }
-    //     });
-    //     L.Routing.control({
-    //       waypoints: [
-    //         L.latLng(origin.lat, origin.lon),
-    //         L.latLng(destinityCurrent.lat, destinityCurrent.lon),
-    //       ],
-    //       routeWhileDragging: true,
-    //       autoRoute: true,
-    //       show: false,
-    //       //showAlternatives: true,
-    //       altLineOptions: {
-    //         styles: [
-    //           { color: "black", opacity: 0.15, weight: 9 },
-    //           { color: "white", opacity: 0.8, weight: 6 },
-    //           { color: "blue", opacity: 0.5, weight: 2 },
-    //         ],
-    //       },
-    //       createMarker: function () {
-    //         return null;
-    //       },
-    //     }).addTo(map);
-    //   }
-    // }, [origin, destinity, map]);
   }
 
   return (
@@ -144,7 +95,7 @@ const MapView = (route) => {
       <div className="map">
         <MapContainer center={state.currentLocation} zoom={state.zoom}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <Markers />
+          <Markers checkNodes={checkSeeRoute} />
           <Routing route={route} />
         </MapContainer>
       </div>
