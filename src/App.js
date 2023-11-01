@@ -1,10 +1,13 @@
-import './App.css';
-import Layout from './components/app/layout/Layout';
+import "./App.css";
+import Layout from "./components/app/layout/Layout";
+import { GlobalStateProvider } from "./hooks/GlobalStateContext";
 
 function App() {
   return (
     <div className="App">
-      <Layout />
+      <GlobalStateProvider>
+        <Layout />
+      </GlobalStateProvider>
     </div>
   );
 }

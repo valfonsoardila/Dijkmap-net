@@ -3,6 +3,7 @@ import "./Layout.css";
 import Header from "../header/Header.js";
 import Sidebar from "../sidebar/Sidebar.js";
 import Content from "../content/Content.js";
+import { useGlobalState, setClearRoute } from '../../../hooks/GlobalStateContext';
 import { motion } from "framer-motion";
 
 function Layout() {
@@ -17,6 +18,7 @@ function Layout() {
   const [estimtedDistance, setEstimtedDistance] = useState(0);
   const [numberNodes, setNumberNodes] = useState(0);
   const [route, setRoute] = useState([]);
+  const { state, dispatch } = useGlobalState();
 
   const sidebarClick = () => {
     setSidebar(!sidebar);
@@ -37,7 +39,6 @@ function Layout() {
     console.log(transport);
   };
   const handleCheckNodes = (checkNodes) => {
-    console.log(checkNodes);
     setCheckNodes(checkNodes);
   };
   const handleCheckSeeRoute = (checkSeeRoute) => {
@@ -56,7 +57,11 @@ function Layout() {
   const handleRoute = (route) => {
     setRoute(route);
   }
-
+  const handleSetClearRoute = (value) => {
+    console.log(value);
+    setClearRoute(dispatch, value);
+  };
+  
   return (
     <motion.div
       initial={{ opacity: 0, x: -50 }}
@@ -80,6 +85,7 @@ function Layout() {
           estimtedDistance={estimtedDistance}
           numberNodes={numberNodes}
           route={route}
+          onClearRoute={handleSetClearRoute}
         />
         <Content
           cardOption={card}

@@ -24,6 +24,7 @@ function Sidebar({
   estimtedDistance,
   numberNodes,
   route,
+  onClearRoute,
 }) {
   const [expandedData, setExpandedData] = useState(false);
   const [expandedResults, setExpandedResults] = useState(false);
@@ -36,6 +37,7 @@ function Sidebar({
   const [transportVelocity, setTransportVelocity] = useState("0km/h");
   const [checkNodes, setCheckNodes] = useState(false);
   const [checkSeeRoute, setCheckSeeRoute] = useState(false);
+  const [clearRoute, setClearRoute] = useState(true);
 
   const handlecheckNodes = () => {
     setCheckNodes(!checkNodes);
@@ -56,7 +58,7 @@ function Sidebar({
       if (cities[i] === city) {
         const latitude = Position[cities[i]].lat;
         const longitude = Position[cities[i]].lon;
-        const location = {city: city, lat: latitude, lon: longitude };
+        const location = { city: city, lat: latitude, lon: longitude };
         onCityOriginSelected(location);
         break;
       }
@@ -100,8 +102,14 @@ function Sidebar({
   const toggleExpandedConfig = () => {
     setExpandedConfig(!expandedConfig);
   };
+  const handleClearRoute = () => {
+    setClearRoute(!clearRoute);
+    onClearRoute(clearRoute);
+    // Recarga la página actual
+    window.location.reload();
+  };
   return (
-    <div className={`sidebar ${sidebarOption ? 'active' : ''}`}>
+    <div className={`sidebar ${sidebarOption ? "active" : ""}`}>
       <div className="sidebar__logo">
         <img src={logoPNG} alt="logo" />
         <h1>DijkMap Net</h1>
@@ -164,6 +172,14 @@ function Sidebar({
                         </option>
                       ))}
                     </select>
+                  </div>
+                  <div className="collapsible-button">
+                    <button
+                      className="btn btn-primary"
+                      onClick={handleClearRoute}
+                    >
+                      Refrescar
+                    </button>
                   </div>
                 </div>
               )}

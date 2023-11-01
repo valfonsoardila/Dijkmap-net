@@ -191,3 +191,15 @@
 .collapsible-options select option {
   color: #000;
 }
+.collapsible-button {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.collapsible-button button {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./MapView.css";
+import { useGlobalState } from "../../../hooks/GlobalStateContext";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import Markers from "../markers/Markers";
 import "leaflet/dist/leaflet.css";
@@ -12,14 +13,16 @@ import "leaflet-control-custom"; // Asegúrate de tener el archivo Awns.json en 
 import { motion } from "framer-motion";
 import Position from "../../../assets/positions/Positions.json";
 
-const MapView = (route, {checkNodes, checkSeeRoute}) => {
+const MapView = (route, { checkNodes, checkSeeRoute }) => {
   const [originCurrent, setOriginCurrent] = useState({ lat: "", lon: "" });
   const [destinityCurrent, setDestinityCurrent] = useState({
     lat: "",
     lon: "",
   });
+  const { state } = useGlobalState();
+  const { clearRoute } = state;
 
-  const [state, setState] = useState({
+  const [location, setLocation] = useState({
     currentLocation: { lat: "4.570868", lng: "-74.297333" },
     zoom: 6,
   });
@@ -81,6 +84,38 @@ const MapView = (route, {checkNodes, checkSeeRoute}) => {
     }, [ubicaciones, map]);
   }
 
+  useEffect(() => {
+    const clearRouteMap = () => {
+      if (clearRoute) {
+        console.log("clearRouteMap");
+        const routingControl = document.getElementsByClassName(
+          "leaflet-routing-container leaflet-bar leaflet-control"
+        )[0];
+        if (routingControl) {
+          routingControl.remove();
+        }
+      }
+    };
+    clearRouteMap();
+  }, [clearRoute]);
+  
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLocation({
+          currentLocation: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          },
+          zoom: 13,
+        });
+        setOriginCurrent({
+          lat: position.coords.latitude,
+          lon: position.coords.longitude,
+        });
+      });
+    }
+  }, []);
   return (
     <motion.div
       initial={{ opacity: 0, x: -50 }}
@@ -93,7 +128,7 @@ const MapView = (route, {checkNodes, checkSeeRoute}) => {
         <span>Mapa Interactivo</span>
       </div>
       <div className="map">
-        <MapContainer center={state.currentLocation} zoom={state.zoom}>
+        <MapContainer center={location.currentLocation} zoom={location.zoom}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <Markers checkNodes={checkSeeRoute} />
           <Routing route={route} />
