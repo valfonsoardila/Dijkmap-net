@@ -1,0 +1,142 @@
+.logocontainer {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px;
+}
+.logocontainer img {
+  width: 18%;
+  height: 80%;
+}
+.logotext {
+  font-size: 40px;
+  color: #328C40;
+  font-weight: 600;
+}
+.logintext {
+  margin-top: 15px;
+  font-size: 30px;
+  color: #000;
+  font-weight: 600;
+}
+.formcontainer {
+  width: 100%;
+  height: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.form {
+  width: 80%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 10%;
+}
+.form-group {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: auto;
+}
+.form-group span {
+  margin-top: 1%;
+  align-self: start;
+  color: #575757;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.form-group label {
+  align-self: self-start;
+  font-size: 20px;
+  color: #000;
+  font-weight: 600;
+}
+.form-group svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+  color: #000;
+}
+.form-group input {
+  width: 100%;
+  height: 50%;
+  border: none;
+  border-bottom: 1px solid #03a6a6;
+  background: transparent;
+  outline: none;
+  color: #000;
+  font-size: 20px;
+  padding-left: 10px;
+}
+.form-group input::placeholder {
+  color: rgba(45, 45, 45, 0.5);
+  font-size: 16px;
+}
+.form-group:active input {
+  border-bottom: 1px solid #2bd8b5;
+}
+.btn-primary {
+  display: flex;
+  height: 50%;
+  width: 35%;
+  background: transparent;
+  color: #000;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(63, 63, 63, .5), 0 0 40px rgba(70, 70, 70, .5),
+    0 0 80px rgb(100, 100, 100);
+  border: 0.5px solid rgba(180, 180, 180, 0.3);
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.6s ease;
+}
+.btn-primary:hover {
+  background: #F23030;
+  color: rgba(255, 255, 255, .9);
+  box-shadow: 0 0 10px #F23030, 0 0 40px #F23030, 0 0 80px #F23030;
+  transition-delay: 0.5s;
+}
+.form-footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 20%;
+  align-items: center;
+}
+.form-footer-text {
+  color: #000;
+}
+.form-footer-text span {
+  color: #575757;
+  font-weight: 600;
+  cursor: pointer;
+}
+.form-footer-divider {
+  display: flex;
+  width: 80%;
+  height: 1px;
+  background: #575757;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+.form-footer-google {
+  display: flex;
+  width: 80%;
+  height: 50%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

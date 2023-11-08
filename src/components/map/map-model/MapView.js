@@ -3,6 +3,7 @@ import "./MapView.css";
 import { useGlobalState } from "../../../hooks/GlobalStateContext";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import Markers from "../markers/Markers";
+import CurrentMarker from "../current-loctaion-marker/CurrentMarker";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
@@ -13,17 +14,12 @@ import "leaflet-control-custom"; // Asegúrate de tener el archivo Awns.json en 
 import { motion } from "framer-motion";
 import Position from "../../../assets/positions/Positions.json";
 
-const MapView = (route, { checkNodes, checkSeeRoute }) => {
-  const [originCurrent, setOriginCurrent] = useState({ lat: "", lon: "" });
-  const [destinityCurrent, setDestinityCurrent] = useState({
-    lat: "",
-    lon: "",
-  });
+const MapView = (route, { checkNodes, checkSeeRoute, transport }) => {
   const { state } = useGlobalState();
   const { clearRoute } = state;
 
   const [location, setLocation] = useState({
-    currentLocation: { lat: "4.570868", lng: "-74.297333" },
+    currentLocation: { lat: 4.570868, lng: -74.297333 },
     zoom: 6,
   });
   function buscarRuta(route) {
@@ -73,7 +69,9 @@ const MapView = (route, { checkNodes, checkSeeRoute }) => {
           autoRoute: true,
           show: checkSeeRoute, // Esto muestra la ruta en el mapa
           // lineOptions: {
-          //   styles: [{ color: "blue", opacity: 0.6, weight: 4 }],
+          //  styles: [
+          //     {color: 'orange', opacity: 0.2, weight: 4},
+          //  ],
           // },
           createMarker: function (i, waypoint, n) {
             // Crea marcadores para los puntos de ruta (opcional)
@@ -109,10 +107,6 @@ const MapView = (route, { checkNodes, checkSeeRoute }) => {
           },
           zoom: 13,
         });
-        setOriginCurrent({
-          lat: position.coords.latitude,
-          lon: position.coords.longitude,
-        });
       });
     }
   }, []);
@@ -130,6 +124,7 @@ const MapView = (route, { checkNodes, checkSeeRoute }) => {
       <div className="map">
         <MapContainer center={location.currentLocation} zoom={location.zoom}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <CurrentMarker location={location} />
           <Markers checkNodes={checkSeeRoute} />
           <Routing route={route} />
         </MapContainer>
@@ -139,3 +134,4 @@ const MapView = (route, { checkNodes, checkSeeRoute }) => {
 };
 
 export default MapView;
+

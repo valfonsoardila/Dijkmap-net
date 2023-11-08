@@ -17,6 +17,7 @@ function Layout() {
   const [estimtedTime, setEstimtedTime] = useState(0);
   const [estimtedDistance, setEstimtedDistance] = useState(0);
   const [numberNodes, setNumberNodes] = useState(0);
+  const [cost, setCost] = useState(0);
   const [route, setRoute] = useState([]);
   const { state, dispatch } = useGlobalState();
 
@@ -54,6 +55,10 @@ function Layout() {
   const handleNumberNodes = (numberNodes) => {
     setNumberNodes(numberNodes);
   }
+  const handleCost = (cost) => {
+    console.log(cost);
+    setCost(cost);
+  }
   const handleRoute = (route) => {
     setRoute(route);
   }
@@ -84,6 +89,7 @@ function Layout() {
           estimtedTime={estimtedTime}
           estimtedDistance={estimtedDistance}
           numberNodes={numberNodes}
+          cost={cost}
           route={route}
           onClearRoute={handleSetClearRoute}
         />
@@ -97,6 +103,7 @@ function Layout() {
           onEstimtedTime={handleEstimtedTime}
           onEstimtedDistance={handleEstimtedDistance}
           onNumberNodes={handleNumberNodes}
+          onCost={handleCost}
           onRoute={handleRoute}
         />
       </div>

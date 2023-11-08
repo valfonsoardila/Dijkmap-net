@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
-import logoPNG from "../../../assets/ic.png";
+import { resources } from "../../../assets/resources";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalculator,
@@ -23,6 +23,7 @@ function Sidebar({
   estimtedTime,
   estimtedDistance,
   numberNodes,
+  cost,
   route,
   onClearRoute,
 }) {
@@ -111,7 +112,7 @@ function Sidebar({
   return (
     <div className={`sidebar ${sidebarOption ? "active" : ""}`}>
       <div className="sidebar__logo">
-        <img src={logoPNG} alt="logo" />
+        <img src={resources.ic} alt="logo" />
         <h1>DijkMap Net</h1>
       </div>
       <div className="sidebar__menu">
@@ -213,6 +214,10 @@ function Sidebar({
                   <div className="collapsible-options">
                     <span>Veloc: </span>
                     <p>{transportVelocity}</p>
+                  </div>
+                  <div className="collapsible-options">
+                    <span>Costo: </span>
+                    <p>${cost}</p>
                   </div>
                 </div>
               )}

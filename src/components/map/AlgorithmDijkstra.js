@@ -4,7 +4,9 @@ import Awns from "../../assets/awns/Awns.json";
 // import Costs from "../../assets/costs/Costs.json";
 import MapView from "./map-model/MapView";
 import CalculationView from "./calculation-card/CalculationView";
+import Costs from "../../assets/costs/Costs.json";
 import { motion } from "framer-motion";
+import KmxGalon from "../../assets/costs/KmxGalon.json";
 import "./AlgorithmDijkstra.css";
 
 const AlgorithmDijkstra = ({
@@ -18,6 +20,7 @@ const AlgorithmDijkstra = ({
   onEstimtedDistance,
   onNumberNodes,
   onRoute,
+  onCost,
 }) => {
   const [startNode, setStartNode] = useState("Valledupar");
   const [endNode, setEndNode] = useState("Valledupar");
@@ -26,6 +29,7 @@ const AlgorithmDijkstra = ({
   const [graph, setGraph] = useState({});
   const [routeArray, setRouteArray] = useState([]);
   const [nodeList, setNodeList] = useState([]);
+  const [cost, setCost] = useState(0);
 
   //Se usa este hook para calcular la ruta más corta
   useEffect(() => {
@@ -37,7 +41,7 @@ const AlgorithmDijkstra = ({
         end = cityDestinity.city;
         const graph = buildGraph();
         console.log(graph);
-        const optimalRoute = dijkstra(graph, start, end);
+        const optimalRoute = dijkstra(graph, start, end, Costs);
         if (optimalRoute.distance > 0) {
           setGraph(graph);
           const distance = optimalRoute.distance.toFixed(2);
@@ -60,6 +64,25 @@ const AlgorithmDijkstra = ({
           const time = distance / averageSpeed;
           setTime(time.toFixed(2));
           onEstimtedTime(time.toFixed(2));
+          let cost = 0;
+          if (KmxGalon[transport.Tipo]) {
+            const precio = KmxGalon[transport.Tipo].precio;
+            if (transport.Tipo === "Avión") {
+              // Fórmula para Avión: (distancia * galon del avión) / 100
+              cost = (distance * precio) / 100;
+            } else {
+              if (transport.Tipo === "Bus") {
+                // Fórmula para Bus: (distancia * precio * delta * 2)
+                const delta = optimalRoute.path.length / 100;
+                cost = distance * precio * delta * 2;
+              }else{
+                // Otras formas de transporte: distancia * galon del transporte
+                cost = distance * precio;
+              }
+            }
+          }
+          setCost(cost.toFixed(3));
+          onCost(cost.toFixed(3));
         } else {
           setTime(0);
           onEstimtedTime(0);
@@ -100,7 +123,7 @@ const AlgorithmDijkstra = ({
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       return R * c;
     }
-    function dijkstra(graph, start, end) {
+    function dijkstra(graph, start, end, costs) {
       const distances = {};
       const visited = {};
       const parents = {};
@@ -138,7 +161,15 @@ const AlgorithmDijkstra = ({
         current = parents[current];
       }
 
-      return { distance: distances[end], path };
+      // Calcular el costo total al desplazarse en la ruta óptima
+      let totalCost = 0;
+      for (let i = 0; i < path.length - 1; i++) {
+        const currentNode = path[i];
+        const nextNode = path[i + 1];
+        totalCost += costs[currentNode][nextNode];
+      }
+
+      return { distance: distances[end], path, totalCost };
     }
     findShortestPath();
   }, [
@@ -151,6 +182,7 @@ const AlgorithmDijkstra = ({
     onEstimtedDistance,
     onNumberNodes,
     onEstimtedTime,
+    onCost,
   ]);
   //Se usa este hook para enviar la ruta al componente padre
   useEffect(() => {
@@ -158,7 +190,7 @@ const AlgorithmDijkstra = ({
       const route = nodeList.join(" -> ");
       setRouteArray(route);
       onRoute(route);
-    }else{
+    } else {
       onRoute("No hay ruta");
     }
   }, [nodeList, onRoute]);
@@ -171,13 +203,22 @@ const AlgorithmDijkstra = ({
       exit={{ opacity: 0 }}
       transition={{ duration: 0.7 }}
     >
-      {
-        cardOption ? (
-          <CalculationView distance={distance} time={time} route={routeArray} graph={graph} />
-        ) : (
-          <MapView route={routeArray} checkNodes={checkNodes} checkSeeRoute={checkSeeRoute} />
-        )
-      }
+      {cardOption ? (
+        <CalculationView
+          distance={distance}
+          time={time}
+          route={routeArray}
+          graph={graph}
+          cost={cost}
+        />
+      ) : (
+        <MapView
+          route={routeArray}
+          checkNodes={checkNodes}
+          checkSeeRoute={checkSeeRoute}
+          transport={transport}
+        />
+      )}
     </motion.div>
   );
 };
