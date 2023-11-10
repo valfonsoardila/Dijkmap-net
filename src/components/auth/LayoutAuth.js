@@ -6,7 +6,7 @@ import RegisterPage from "../../modules/auth/register/RegisterPage";
 import ForgotPage from "../../modules/auth/forgot/ForgotPage";
 import { motion } from "framer-motion";
 
-const LayoutAuth = () => {
+const LayoutAuth = ({firebase}) => {
   const [activeComponent, setActiveComponent] = useState("login");
   const handleComponentChange = (component) => {
     setActiveComponent(component);

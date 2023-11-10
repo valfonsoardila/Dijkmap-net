@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   faArrowRightArrowLeft,
   faBars,
+  faDoorOpen
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Header.css";
@@ -19,6 +20,7 @@ function Header({ onSidebarClick, onCardClick }) {
     setCard(!card);
     onCardClick(card);
   };
+  
 
   return (
     <div className="header">
@@ -40,6 +42,14 @@ function Header({ onSidebarClick, onCardClick }) {
         <div className="button-card-container" onClick={cardClick}>
           <FontAwesomeIcon
             icon={faArrowRightArrowLeft}
+            className="header-icon"
+            onClick={cardClick}
+            title="Cambiar Vista"
+          />
+        </div>
+        <div className="button-card-container" onClick={cardClick}>
+          <FontAwesomeIcon
+            icon={faDoorOpen}
             className="header-icon"
             onClick={cardClick}
             title="Cambiar Vista"
