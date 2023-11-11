@@ -5,6 +5,7 @@ import {
   faDoorOpen
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getAuth, signOut } from "firebase/auth";
 import "./Header.css";
 
 function Header({ onSidebarClick, onCardClick }) {
@@ -21,6 +22,16 @@ function Header({ onSidebarClick, onCardClick }) {
     onCardClick(card);
   };
   
+  const handleSignOut = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        console.log("Sign-out successful.");
+      })
+      .catch((error) => {
+        console.log("An error happened.");
+      });
+  }
 
   return (
     <div className="header">
@@ -39,12 +50,12 @@ function Header({ onSidebarClick, onCardClick }) {
       </div>
       <div className="header-center"></div>
       <div className="header-right">
-        <div className="button-card-container" onClick={cardClick}>
+        <div className="button-card-container" onClick={handleSignOut}>
           <FontAwesomeIcon
             icon={faArrowRightArrowLeft}
             className="header-icon"
-            onClick={cardClick}
-            title="Cambiar Vista"
+            onClick={handleSignOut}
+            title="Cerrar sesion"
           />
         </div>
         <div className="button-card-container" onClick={cardClick}>
