@@ -27,6 +27,7 @@ function Header({ onSidebarClick, onCardClick }) {
     signOut(auth)
       .then(() => {
         console.log("Sign-out successful.");
+        window.location.href = "/";
       })
       .catch((error) => {
         console.log("An error happened.");
@@ -50,20 +51,20 @@ function Header({ onSidebarClick, onCardClick }) {
       </div>
       <div className="header-center"></div>
       <div className="header-right">
-        <div className="button-card-container" onClick={handleSignOut}>
+        <div className="button-card-container" onClick={cardClick}>
           <FontAwesomeIcon
             icon={faArrowRightArrowLeft}
             className="header-icon"
-            onClick={handleSignOut}
-            title="Cerrar sesion"
+            onClick={cardClick}
+            title="Cambiar Vista"
           />
         </div>
-        <div className="button-card-container" onClick={cardClick}>
+        <div className="button-card-container" onClick={handleSignOut}>
           <FontAwesomeIcon
             icon={faDoorOpen}
             className="header-icon"
-            onClick={cardClick}
-            title="Cambiar Vista"
+            onClick={handleSignOut}
+            title="Cerrar sesion"
           />
         </div>
       </div>
