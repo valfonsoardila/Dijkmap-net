@@ -27,32 +27,32 @@ const LoginPage = ({ onComponentChange }) => {
       }, 2600);
       return;
     } else {
-      if (password.length < 6) {
-        setMessage("La contraseña debe tener al menos 6 caracteres");
+      if (email === "" && password !== "") {
+        setMessage("No ha ingresado el correo electrónico");
         setAlertView(true);
         setTimeout(() => {
           setAlertView(false);
         }, 2600);
         return;
       } else {
-        if (!email.includes("@")) {
-          setMessage("El correo ingresado no es válido");
+        if (email !== "" && password === "") {
+          setMessage("No ha ingresado la contraseña");
           setAlertView(true);
           setTimeout(() => {
             setAlertView(false);
           }, 2600);
           return;
         } else {
-          if (email === "" && password !== "") {
-            setMessage("No ha ingresado el correo electrónico");
+          if (!email.includes("@")) {
+            setMessage("El correo ingresado no es válido");
             setAlertView(true);
             setTimeout(() => {
               setAlertView(false);
             }, 2600);
             return;
           } else {
-            if (email !== "" && password === "") {
-              setMessage("No ha ingresado la contraseña");
+            if (password.length < 6) {
+              setMessage("La contraseña debe tener al menos 6 caracteres");
               setAlertView(true);
               setTimeout(() => {
                 setAlertView(false);
@@ -67,11 +67,13 @@ const LoginPage = ({ onComponentChange }) => {
                 })
                 .catch((error) => {
                   const errorMessage = error.message;
-                  setMessage(errorMessage);
-                  setAlertView(true);
-                  setTimeout(() => {
-                    setAlertView(false);
-                  }, 2600);
+                  if (errorMessage.includes("Firebase") || error === "Error: The email address is badly formatted.") {
+                    setMessage("Email o contraseña incorrectos");
+                    setAlertView(true);
+                    setTimeout(() => {
+                      setAlertView(false);
+                    }, 2600);
+                  }
                 });
             }
           }
@@ -145,7 +147,7 @@ const LoginPage = ({ onComponentChange }) => {
                   ? "#f23030"
                   : message.includes("ingresa")
                   ? "#f23030"
-                  : "green",
+                  : message.includes("incorrectos") ? "#f23030" : message.includes("válido") ? "#f23030" : message.includes("caracteres") ? "#f23030" : "green",
               }}
             >
               {message && <p>{message}</p>}
